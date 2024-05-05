@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgf7hkv7ppfky"]
+
+[ext_resource type="Texture2D" uid="uid://buxhugnr2d6jn" path="res://sprites/tilemap-characters_packed.png" id="1_ei8v0"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_wx1j7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6xkfs"]
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_dt5cx"]
+resource_name = "Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_favc2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4woe"]
+_data = {
+"Idle": SubResource("Animation_dt5cx"),
+"RESET": SubResource("Animation_favc2")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_wx1j7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6xkfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ei8v0")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 24)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w4woe")
+}
+autoplay = "Idle"
