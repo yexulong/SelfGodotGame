@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6xkfs"]
 radius = 5.0
-height = 14.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_dt5cx"]
 resource_name = "Idle"
@@ -50,11 +50,14 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
+position = Vector2(0, -12)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_wx1j7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 10
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_6xkfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -72,8 +75,8 @@ autoplay = "Idle"
 [node name="JumpAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fkpfo")
 
-[node name="HurtAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="HurtAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_t251m")
 
-[node name="ExplosionAudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+[node name="ExplosionAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_e0th0")

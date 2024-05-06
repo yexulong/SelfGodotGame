@@ -8,6 +8,8 @@ const JUMP_VELOCITY = -400.0
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var jump_audio_stream_player = $JumpAudioStreamPlayer2D
+@onready var explosion_audio_stream_player = $ExplosionAudioStreamPlayer
+@onready var hurt_audio_stream_player = $HurtAudioStreamPlayer
 
 
 func _physics_process(delta: float) -> void:
