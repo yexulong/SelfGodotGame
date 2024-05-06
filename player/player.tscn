@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgf7hkv7ppfky"]
+[gd_scene load_steps=12 format=3 uid="uid://dgf7hkv7ppfky"]
 
 [ext_resource type="Texture2D" uid="uid://buxhugnr2d6jn" path="res://sprites/tilemap-characters_packed.png" id="1_ei8v0"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_wx1j7"]
@@ -48,6 +48,15 @@ _data = {
 "RESET": SubResource("Animation_favc2")
 }
 
+[sub_resource type="Gradient" id="Gradient_3v6mk"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l8nxc"]
+gradient = SubResource("Gradient_3v6mk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 position = Vector2(0, -12)
@@ -80,3 +89,9 @@ stream = ExtResource("4_t251m")
 
 [node name="ExplosionAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_e0th0")
+
+[node name="LightOccluder2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_l8nxc")
+texture_scale = 4.0
+height = 50.0

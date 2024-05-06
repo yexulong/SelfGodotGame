@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp31t6ai8wm8o"]
+[gd_scene load_steps=10 format=3 uid="uid://dp31t6ai8wm8o"]
 
 [ext_resource type="Script" path="res://game/enemy.gd" id="1_f3pd3"]
 [ext_resource type="Texture2D" uid="uid://buxhugnr2d6jn" path="res://sprites/tilemap-characters_packed.png" id="1_gymfc"]
@@ -38,6 +38,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5y0h5"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_exoo0"]
+polygon = PackedVector2Array(-6, -8, -6, 6, 6, 5, 6, -9)
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 9
@@ -58,5 +61,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_5y0h5")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_exoo0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
