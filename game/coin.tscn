@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bubgaxlehmmr"]
+
+[ext_resource type="Script" path="res://game/coin.gd" id="1_mleio"]
+[ext_resource type="Texture2D" uid="uid://dan0ythnxd7i7" path="res://sprites/tilemap_packed.png" id="1_x3wqo"]
+[ext_resource type="AudioStream" uid="uid://dr2g0doeobxry" path="res://sounds/coin.wav" id="3_dknw1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l400f"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju6uj"]
+atlas = ExtResource("1_x3wqo")
+region = Rect2(198, 126, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifygb"]
+atlas = ExtResource("1_x3wqo")
+region = Rect2(216, 126, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hl3le"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju6uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifygb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Coin" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_mleio")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dknw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l400f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hl3le")
+autoplay = "default"
+frame_progress = 0.474079
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
